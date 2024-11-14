@@ -14,6 +14,7 @@ import Nav1 from "./SVG/Nav1";
 import Nav2 from "./SVG/Nav2";
 import Nav3 from "./SVG/Nav3";
 import Str1 from "./SVG/Str1";
+import logo from "./SVG/Logo.svg";
 
 export{
     Footer,
@@ -32,4 +33,5 @@ export{
     Fot1,
     Fot2,
     Str1,
+    logo,
 };

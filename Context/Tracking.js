@@ -2,19 +2,17 @@ import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 import { ethers } from "ethers";
 
-//Internal Import
 import tracking from "../Context/Tracking.json";
 const ContractAddress = "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0";
 const ContractABI = tracking.abi;
 
-//Fetching the contract
 const fetchContract = (signerOrProvider) =>
     new ethers.Contract(ContractAddress, ContractABI, signerOrProvider);
 
 export const TrackingContext = React.createContext();
 
 export const TrackingProvider = ({ children }) =>{
-    //State Variable
+
     const DappName = "Product Tracking Dapp";
     const [currentUser, setCurrentUser] = useState("");
 
@@ -142,7 +140,7 @@ export const TrackingProvider = ({ children }) =>{
         }
     };
 
-    const startShipment = async(getProsuct) =>{
+    const startShipment = async(getProduct) =>{
         const{ receiver, index} = getProduct;
         try{
             if(!window.ethereum) return "Install MetaMask";
@@ -161,14 +159,13 @@ export const TrackingProvider = ({ children }) =>{
                 index*1,
             );
 
-            shipment.wait();
+            shipment.wait(); 
             console.log(shipment);
-        }catch {error} {
+        }catch (error) {
             console.log("Sorry no shipment", error);
         }
     };
 
-    //Check wallet connection
     const checkIfWalletConnected = async() =>{
         try{
             if(!window.ethereum) return "Install MetaMask";
@@ -187,7 +184,7 @@ export const TrackingProvider = ({ children }) =>{
             return "Not Connected";
         }
     };
-    //Connect Wallet Function
+
     const connectWallet = async() =>{
         try{
             if(!window.ethereum) return "Install MetaMask";
